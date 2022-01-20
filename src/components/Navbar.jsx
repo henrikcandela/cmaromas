@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const Navbar = () => {
     return (
         <div>
@@ -13,29 +15,29 @@ const Navbar = () => {
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav mx-auto">
+                            <ul class="navbar-nav mx-auto">
 
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
+                                <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
 
-                            <li class="nav-item">
-                            <a class="nav-link" href="#"> Contacto </a>
-                            </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#"> Contacto </a>
+                                </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Shop
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#"> Velas </a></li>
-                                    <li><a class="dropdown-item" href="#"> Perfuminas </a></li>
-                                    <li><a class="dropdown-item" href="#"> Difusores </a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Shop
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#"> Velas </a></li>
+                                        <li><a class="dropdown-item" href="#"> Perfuminas </a></li>
+                                        <li><a class="dropdown-item" href="#"> Difusores </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
             </nav>
         </div>
     )
