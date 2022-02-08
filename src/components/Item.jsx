@@ -1,48 +1,40 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useMemo } from "react";
 
+const Item = ({ product }) => {
+    const {id, title, thumbnail, attributes, price} = product
+    const [cleanAttributes, setCleanAttributes] = useState([])
+    const whiteListAttributes = useMemo(() =>  ["Marca", "Modelo"], []);
 
-const Item = ({id, title, description, price, prictureUrl, stock}) => {
-    const [itemsQty, setItemsQty] = useState(0);
-
-    const setRealStock = (qty) => {
-        if (qty <= stock) {
-            setItemsQty(qty)
-        } 
+    const filterAttributes = () => {
+        let newAttributes = attributes.filter(attribute => whiteListAttributes.includes(attribute.name))
+        setCleanAttributes(newAttributes)
     }
+    useEffect(filterAttributes, [attributes, whiteListAttributes])
 
-    const removeFromStock = (qty) => {
-        if (qty >= 0) {
-            setItemsQty(qty)
-        }
+    const goToProduct = () => {
+        navigate(`/product/${id}`)
     }
-
-  return <div>
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="..."> {prictureUrl} </img>
-            <div class="card-body">
-                <h5 class="card-title"> {title} </h5>
-                <p class="card-text"> {description}</p>
-            </div>
-
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> {id} </li>
-                <li class="list-group-item">{stock}</li>
-                <li class="list-group-item">{price}</li>
-            </ul>
-
-            <div class="card-body">
-                <>
-                    <div style={{ marginBottom: 10}}>
-                        <button type="button" class="btn btn-secondary" onClick={ () => removeFromStock (itemsQty - 1 ) } variant="primary">-</button>           
-                        <span style={{  margin: 10, fontSize: "3rem" }}>{itemsQty}</span>
-                        <button type="button" class="btn btn-secondary" onClick={ () => setRealStock (itemsQty + 1 ) } variant="primary">+</button>
-                    </div>    
-          
-                </>
-            </div>
-        </div>
-    </div>  
-};
+    
+    return (
+        <Card >
+            <Card.Img style={{ marginTop: 10, height: '110px', with: "100%", objectFit: "contain" }} variant="top" src={thumbnail} />
+            <Card.Body style={{ textAlign: "left" }}>
+                <Card.Text style={{ height: 40 }}>
+                    {title}
+                </Card.Text>
+                <Card.Title>
+                    ${price}
+                </Card.Title>          
+            </Card.Body>              
+            <Card.Header>Detalles</Card.Header>            
+            <ListGroup variant="flush">
+                {cleanAttributes.map( (attribute, index) => {
+                    return <ListGroup.Item key={index}>{attribute.name} {attribute.value_name}</ListGroup.Item>
+                })}
+            </ListGroup>             
+            <Button variant="primary" onClick={ () => goToProduct()}>Ver detalle del producto</Button>                
+        </Card> 
+    )
+}
 
 export default Item;
-

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ShoppingCartOutlined } from '@ant-design/icons'; // Desafio componentes I
 
 
 
@@ -7,7 +8,7 @@ const Navbar = () => {
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
-                        {/* Donde dice navbar quiero que este el logo */}
+
                         <a class="navbar-brand" href="#"> LOGO </a> 
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +16,7 @@ const Navbar = () => {
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav mx-auto">
+                            <ul class="navbar-nav">
 
                                 <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -35,10 +36,16 @@ const Navbar = () => {
                                         <li><a class="dropdown-item" href="#"> Difusores </a></li>
                                     </ul>
                                 </li>
+
+                                <li>
+                                <button type="button" class="btn btn-outline-secondary"><ShoppingCartOutlined/></button>
+                                </li>
                             </ul>
                         </div>
+
                     </div>
             </nav>
+
         </div>
     )
 }

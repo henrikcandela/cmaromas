@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 
 
-const Itemcount = () => {
+const Itemcount = (stock) => {
 
  const [itemsQty, setItemsQty] = useState(0);
 
- return <div>
-      <button type="button" class="btn btn-outline-secondary" onClick={ () => setItemsQty (itemsQty - 1)}> - </button>
-      <span style={{margin:10 , fontSize: "3rem"}}> {itemsQty} </span>
-      <button type="button" class="btn btn-outline-secondary" onClick={ () => setItemsQty (itemsQty + 1)}> + </button>
+ const setRealStock = (qty) => {
+    if (qty <= stock) {
+      setItemsQty (qty)
+    }
+ }
 
+ const removeFromStock = (qty) => {
+  if (qty >= 0) {
+    setItemsQty (qty)
+  }
+}
+
+ return <div>
+      <button type="button" class="btn btn-outline-secondary" onClick={ () => removeFromStock (itemsQty - 1)}> - </button>
+      <span style={{margin:10 , fontSize: "3rem"}}> {itemsQty} </span>
+      <button type="button" class="btn btn-outline-secondary" onClick={ () => setRealStock (itemsQty + 1)}> + </button>
   </div>;
 };
 

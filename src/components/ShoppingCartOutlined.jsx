@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {Component, useState} from 'react'
+
 
 const ShoppingCartOutlined = () => {
     return (
@@ -12,5 +13,7 @@ export default ShoppingCartOutlined
 
 
 function Itemlistcontainer () {
-    {/*Acá luego irá el catálogo*/}
+    return <ul>
+    {Itemlist.map (u => <li> {u} </li>)}
+    </ul>
 }

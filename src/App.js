@@ -1,55 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
-// Navbar
-import Navbar from './components/Navbar';
 
-import { ShoppingCartOutlined } from '@ant-design/icons'; // Desafio componentes I
+import Navbar from './components/Navbar'; // Navbar 
 
 import Itemcount from './components/Itemcount'; // Desafio componentes II
 
-import { useState, useEffect } from 'react';
-import { getProductsFromCategory } from './components/Products';
-import ItemList from './components/ItemList';
-import Item from './components/Item';
+import ItemList from './components/ItemList'; // Desafio promise y maps 
+import Item from './components/Items'; // Desafio promise y maps 
+
+import ItemDetailContainer from './components/ItemDetailContainer'; //Desafio consumiendo apis
+import { getProductsFromCategory } from './components/services/Products';
+
 
 
 function App() {
 
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
+  /*
+    const [items , setItems] = useState ([ 
+      { id: 1, title: "Vela Grand", description: "Vela de cera de soja modelo Grand", price: 1050, stock: 10 },
+      { id: 2, title: "Vela Petit", description: "Vela de cera de soja modelo Petit", price: 750, stock: 8},
+      { id: 3, title: "Vela Dúo", description: "Vela de cera de soja modelo Dúo", price: 1300, stock: 5}
+  ]) */
 
-  useEffect(() => {
-    let mounted = true
-    setLoading(true) 
-    getProductsFromCategory("MLA", "MLA1055").then(items => {
-      if(mounted) {
-        console.log(items.results)
-        setProducts(items.results)
-        setTimeout(() => {
-          setLoading(false)
-        }, 2000)
+  const [products, setProducts] = useState ([])
+
+  useEffect ( () => { 
+    let mounted = true 
+    getProductsFromCategory ("MILA1055").then (items => {
+      if (mounted) {
+        console.log (items.results)
+        setProducts (items.results)
       }
     })
-
-   return () => mounted = false;
-  }, 
-  [])
-
- 
-
+    return () => mounted = false; 
+  })
 
   return (
     <div className="App">
       <Navbar/>
-      <ShoppingCartOutlined />
-      <Itemcount/>
+      <ItemDetailContainer products = {products}/>
 
-      <ItemList products={products} />
-
-
-
-
+       {/* <h2> Mi Carrito </h2>
+         <div>
+        {items.map (item => {
+          return <Item itemTitle = {item.title}/>
+        })} </div> */}
 
 
       <header className="App-header"> </header>
